@@ -17,6 +17,11 @@ public class CubeSpawner : MonoBehaviour
         {
             float x = moveDirection == MoveDirection.X ? transform.position.x : MovingCube.LastCube.transform.position.x;
             float z = moveDirection == MoveDirection.Z ? transform.position.z : MovingCube.LastCube.transform.position.z;
+        
+            if (ScoreText.score > 0 && (ScoreText.score % 10) == 0)
+            {
+                cubePrefab.increseSpeed();
+            }
 
             cube.transform.position = new Vector3(x,
                 MovingCube.LastCube.transform.position.y + cubePrefab.transform.localScale.y,

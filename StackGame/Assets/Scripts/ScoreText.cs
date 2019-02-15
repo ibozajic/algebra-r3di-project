@@ -3,17 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreText : MonoBehaviour
 {
-    private int score;
-    private TextMeshProUGUI[] texts;
-    private TextMeshProUGUI text;
+    public static int score = 0;
+    public static int level = 1;
+    public Text text;
 
     private void Start()
     {
-        texts = GetComponents<TextMeshProUGUI>();
-        Debug.Log("Texts Lengts: ");
+        text = GetComponent<Text>();
         GameManager.OnCubeSpawned += GameManager_OnCubeSawned;
     }
 
@@ -25,6 +25,12 @@ public class ScoreText : MonoBehaviour
     private void GameManager_OnCubeSawned()
     {
         score++;
-        text.text = "Score: " + score;
+
+        if(score > 0 && (score % 10) == 0)
+        {
+            level++;     
+        }
+
+        text.text = "Score: " + score + " Level: " + level;
     }
 }

@@ -13,6 +13,15 @@ public class MovingCube : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 1f;
 
+    public AudioSource dropSoundSource;
+    public AudioSource loseSoundSource;
+
+    internal void increseSpeed()
+    {
+        moveSpeed += 0.5f;
+        Debug.Log("Speed: " + moveSpeed);
+    }
+
     private void OnEnable()
     {
         if (LastCube == null)
@@ -112,11 +121,21 @@ public class MovingCube : MonoBehaviour
         Destroy(cube.gameObject, 1f);
     }
 
+    private void Start()
+    {
+        dropSoundSource = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
         if(MoveDirection == MoveDirection.Z)
             transform.position += transform.forward * Time.deltaTime * moveSpeed;
         else
             transform.position += transform.right * Time.deltaTime * moveSpeed;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        dropSoundSource.Play();
     }
 }
