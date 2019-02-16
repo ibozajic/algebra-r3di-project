@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +12,7 @@ public class ScoreText : MonoBehaviour
     public static int score = 0;
     public static int level = 1;
     public Text text;
+    private int highScore;
 
     private void Start()
     {

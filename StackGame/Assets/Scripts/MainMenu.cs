@@ -29,7 +29,8 @@ public class MainMenu : MonoBehaviour
 
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        GameData data = new GameData(volumSlider.value);
+        GameData data = new GameData();
+        data.musicVolumen = volumSlider.value;
 
         formatter.Serialize(stream, data);
         stream.Close();

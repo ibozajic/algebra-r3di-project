@@ -6,9 +6,5 @@ using UnityEngine;
 public class GameData
 {
     public float musicVolumen;
-
-    public GameData(float mv)
-    {
-        musicVolumen = mv;
-    }
+    public int highScore;
 }

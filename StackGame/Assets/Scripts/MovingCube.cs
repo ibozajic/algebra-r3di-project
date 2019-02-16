@@ -46,7 +46,7 @@ public class MovingCube : MonoBehaviour
         float max = MoveDirection == MoveDirection.Z ? LastCube.transform.localScale.z : LastCube.transform.localScale.x;
 
         if (Math.Abs(hangover) >= max)
-        {
+        {   
             FindObjectOfType<AudioManager>().Play("GameOver");
 
             LastCube = null;
