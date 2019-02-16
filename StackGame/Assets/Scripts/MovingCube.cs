@@ -47,9 +47,11 @@ public class MovingCube : MonoBehaviour
 
         if (Math.Abs(hangover) >= max)
         {
+            FindObjectOfType<AudioManager>().Play("GameOver");
+
             LastCube = null;
             CurrentCube = null;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         float direction = hangover > 0 ? 1f : -1f;
@@ -121,11 +123,6 @@ public class MovingCube : MonoBehaviour
         Destroy(cube.gameObject, 1f);
     }
 
-    private void Start()
-    {
-        dropSoundSource = GetComponent<AudioSource>();
-    }
-
     private void Update()
     {
         if(MoveDirection == MoveDirection.Z)
@@ -136,6 +133,6 @@ public class MovingCube : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        dropSoundSource.Play();
+        FindObjectOfType<AudioManager>().Play("Drop");
     }
 }

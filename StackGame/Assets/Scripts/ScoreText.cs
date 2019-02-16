@@ -31,6 +31,6 @@ public class ScoreText : MonoBehaviour
             level++;     
         }
 
-        text.text = "Score: " + score + " Level: " + level;
+        text.text = "Score: " + score + " | Level: " + level;
     }
 }

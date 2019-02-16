@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Volume saved: " + volumSlider.value);
     }
 
-    private void Awake()
+    public void SetVolumenSliderValueFromGameData()
     {
         string path = Application.persistentDataPath + "/game.dat";
 
@@ -50,6 +50,18 @@ public class MainMenu : MonoBehaviour
             stream.Close();
 
             Debug.Log("Retrive saved volumen: " + data.musicVolumen);
+
+            volumSlider = FindObjectOfType<Slider>();
+
+            if(volumSlider == null)
+            {
+                Debug.LogWarning("No Slider found on screen");
+            }
+            else
+            {
+                Debug.Log("Slider found on Screen");
+                volumSlider.normalizedValue = data.musicVolumen;
+            }            
         }
         else
         {
